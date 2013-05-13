@@ -32,8 +32,8 @@ describe "Static pages" do
 
   describe "Contact page" do
     before { visit contact_path }
-    let (:heading) {'Contact'}
-    let (:page_title) {'Contact'}
+    let (:heading) {'Contact Us'}
+    let (:page_title) {'Contact Us'}
     it_should_behave_like "all static pages"
   end
 
@@ -44,7 +44,7 @@ describe "Static pages" do
     click_link "Help"
     page.should have_selector 'title', text: full_title('Help')
     click_link "Contact"
-    page.should have_selector 'title', text: full_title('Contact')
+    page.should have_selector 'title', text: full_title('Contact Us')
     click_link "Home"
     click_link "Sign up now!"
     page.should have_selector 'title', text: full_title('Sign up')
