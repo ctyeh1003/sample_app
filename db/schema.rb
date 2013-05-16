@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516143046) do
+ActiveRecord::Schema.define(:version => 20130516173614) do
+
+  create_table "agreements", :force => true do |t|
+    t.integer  "agreer_id"
+    t.integer  "agreed_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "agreements", ["agreed_id"], :name => "index_agreements_on_agreed_id"
+  add_index "agreements", ["agreer_id", "agreed_id"], :name => "index_agreements_on_agreer_id_and_agreed_id", :unique => true
+  add_index "agreements", ["agreer_id"], :name => "index_agreements_on_agreer_id"
+
+  create_table "agrees", :force => true do |t|
+    t.integer  "agreer_id"
+    t.integer  "agreed_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "agrees", ["agreed_id"], :name => "index_agrees_on_agreed_id"
+  add_index "agrees", ["agreer_id", "agreed_id"], :name => "index_agrees_on_agreer_id_and_agreed_id", :unique => true
+  add_index "agrees", ["agreer_id"], :name => "index_agrees_on_agreer_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

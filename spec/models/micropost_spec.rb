@@ -9,6 +9,12 @@ describe Micropost do
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:agreements) }
+  it { should respond_to(:agreed_microposts)}
+  it { should respond_to(:reverse_agreements) }
+  it { should respond_to(:agreers) }
+  it { should respond_to(:agreeing?) }
+  it { should respond_to(:agree!) }
   its(:user) { should == user }
 
   it { should be_valid }
@@ -41,4 +47,26 @@ describe Micropost do
     it { should_not be_valid }
   end
 
+  describe "agreeing" do
+    let(:other_micropost) { FactoryGirl.create(:micropost) }    
+    before do
+      @micropost.save
+      @micropost.agree!(other_micropost)
+    end
+
+    it { should be_agreeing(other_micropost) }
+    its(:agreed_microposts) { should include(other_micropost) }
+    
+    describe "agreed micropost" do
+      subject { other_micropost }
+      its(:agreers) { should include(@micropost) }
+    end
+
+    describe "and unagreeing" do
+      before { @micropost.unagree!(other_micropost) }
+
+      it { should_not be_agreeing(other_micropost) }
+      its(:agreed_microposts) { should_not include(other_micropost) }
+    end
+  end
 end
