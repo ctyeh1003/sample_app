@@ -1,0 +1,17 @@
+<% @micropost ||= current_micropost %>
+<div class="stats">
+  <a href="<%= agreeing_micropost_path(@micropost) %>">
+    Agrees with
+    <strong id="agreeing" class="stat">
+      <%= @micropost.agreed_microposts.count %>
+    </strong>
+    microposts 
+  </a>
+
+  <a href="<%= agreers_micropost_path(@micropost) %>">
+    <strong id="agreers" class="stat">
+      <%= @micropost.agreers.count %>
+    </strong>
+    microposts agree
+  </a>
+</div>

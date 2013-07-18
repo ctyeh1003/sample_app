@@ -4,7 +4,6 @@ describe Agreement do
 
   let(:agreer) { FactoryGirl.create(:micropost) }
   let(:agreed) { FactoryGirl.create(:micropost) }
-
   let(:agreement) { agreer.agreements.build(agreed_id: agreed.id) }
 
   subject { agreement }

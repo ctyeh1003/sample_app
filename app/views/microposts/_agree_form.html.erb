@@ -1,0 +1,20 @@
+<div id="agree_form">
+  <%= form_for(@new_micropost) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.text_area :content, placeholder: "Agree..." %>
+      </div>
+  	<%#= render 'agree', new_micropost: f.object %> 
+  	
+  	<%= f.fields_for :agreements do |builder| %>
+  	  <div class="field">
+  	  	<%= builder.hidden_field :agreed_id, :value => @micropost.id %>
+  	  	<%= builder.hidden_field :agreer_id, :value => @new_micropost.id %>
+  	  	<%= builder.hidden_field :nested %>	
+  	  </div>	
+	<% end %>    
+	
+	<%= f.submit "Agree", class: "btn btn-large btn-info" %>
+  
+  <% end %>    
+</div>

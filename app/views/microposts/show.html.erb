@@ -1,0 +1,27 @@
+<% provide(:title, @micropost.id.to_s) %>
+<div class="row">
+  <div class="span8">
+    <h3><%= @title %></h3>
+      <ul class="microposts">
+        <%= render @micropost %>
+      </ul>
+  </div>
+  <div class="span4">
+  	<aside class="span4">
+      
+      <section>
+        <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      </section>
+
+      <section>
+        <%= render 'agree_form'%>
+      </section>
+
+    </aside>
+  </div>
+</div>
+
+

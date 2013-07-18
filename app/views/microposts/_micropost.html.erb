@@ -1,11 +1,31 @@
 <li>
   <span class="content"><%= micropost.content %></span>
+  <br>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
+  <span class="opinion_stats">
+    <%= micropost.agreed_microposts.count+micropost.agreers.count %> Agreements 
+  </span>	
   <% if current_user?(micropost.user) %>
     <%= link_to "delete", micropost, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: micropost.content %>
   <% end %>
+  <br>
+  <div class="row">
+    <div class="span4">
+      <% if micropost.agreers.any? %>
+       <h4>Microposts that Agree:</h4>
+        <%= micropost.agreers.count %> Posts 
+        <%= render 'agreer_feed' %>
+      <% end %>
+    </div>
+    <div class="span4">
+      <% if micropost.agreed_microposts.any? %>
+  	   <h4>Agrees With:</h4>
+        <%= micropost.agreed_microposts.count %> Posts
+        <%= render 'agreed_feed' %> 
+      <% end %>
+    </div>
 </li>

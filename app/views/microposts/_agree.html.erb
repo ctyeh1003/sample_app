@@ -1,0 +1,5 @@
+<%= form_for(new_micropost.agreements.build(agreed_id: @micropost.id),
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :agreed_id %></div>
+  <%= f.submit "Agree", class: "btn btn-large btn-info" %>
+<% end %>

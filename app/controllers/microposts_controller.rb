@@ -2,6 +2,19 @@ class MicropostsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user,   only: :destroy
 
+  def show
+    @user = current_user
+    @micropost = Micropost.find(params[:id]) 
+    @agreed_feed_items = @micropost.agreed_microposts.paginate(page: params[:page])
+    @agreer_feed_items = @micropost.agreers.paginate(page: params[:page])
+    @new_micropost = current_user.microposts.build
+    @new_micropost.agreements.build
+  end
+
+  def new
+    @micropost = Micropost.new
+  end
+
   def create
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
@@ -16,6 +29,20 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     redirect_to root_url
+  end
+
+  def agreeing
+    @title = "Agreeing"
+    @micropost = Micropost.find(params[:id])
+    @microposts = @micropost.agreed_microposts.paginate(page: params[:page])
+    render 'show_agree'
+  end
+
+  def agreers
+    @title = "Agreers"
+    @micropost = Micropost.find(params[:id])
+    @microposts = @micropost.agreers.paginate(page: params[:page])
+    render 'show_agree'
   end
 
   private

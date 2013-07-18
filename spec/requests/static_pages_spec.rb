@@ -17,6 +17,7 @@ describe "Static pages" do
 
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      let(:micropost) {FactoryGirl.create(:micropost, user: user, content: "Testing agreement") }
       before do
         FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
         FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
@@ -29,8 +30,29 @@ describe "Static pages" do
           page.should have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit root_path
+        end
+
+        it { should have_link("0 following", href: following_user_path(user)) }
+        it { should have_link("1 followers", href: followers_user_path(user)) }
+      end
+
+      describe "agreer/agreeing counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        let(:other_micropost) { FactoryGirl.create(:micropost, user: other_user, content: "Agreeing with Testing Agreement") }
+        before do
+          other_micropost.agree!(micropost)
+          visit root_path
+        end
+
+        it { should have_link("1 Agreements", href: agreeing_micropost_path(micropost)) }
+      end
     end
-    
   end
   
   describe "Help page" do

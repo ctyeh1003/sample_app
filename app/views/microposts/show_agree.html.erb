@@ -1,0 +1,12 @@
+<% provide(:title, @title) %>
+<div class="row">  
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @microposts.any? %>
+      <ul class="microposts">
+        <%= render @microposts %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

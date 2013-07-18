@@ -43,4 +43,41 @@ describe "Micropost pages" do
     end
   end
 
+#  describe "micropost show page" do
+    
+
+#    describe "agree/unagree buttons" do 
+ #     let (:other_micropost) {FactoryGirl.create(:micropost) }
+  #    before { visit micropost_path(other_micropost)}
+#
+ #     describe "create new agreeing micropost" do
+  #      let (:new_micropost) {FactoryGirl.create(:micropost) }
+
+
+
+  describe "agreeing/agreers" do
+    let(:micropost) { FactoryGirl.create(:micropost) }
+    let(:other_micropost) { FactoryGirl.create(:micropost) }
+    before { micropost.agree!(other_micropost) }
+
+    describe "agreed micropost" do
+      before do
+        visit agreeing_micropost_path(micropost)
+      end
+
+      it { should have_selector('title', text: full_title('Agreeing')) }
+      it { should have_selector('h3', text: 'Agreeing') }
+      it { should have_link(other_micropost.content, href: micropost_path(other_micropost)) }
+    end
+
+    describe "agreers" do
+      before do
+        visit agreers_micropost_path(other_micropost)
+      end
+
+      it { should have_selector('title', text: full_title('Agreers')) }
+      it { should have_selector('h3', text: 'Agreers') }
+      it { should have_link(micropost.content, href: micropost_path(micropost)) }
+    end
+  end
 end
