@@ -5,7 +5,7 @@
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
   <span class="opinion_stats">
-    <%= micropost.agreed_microposts.count+micropost.agreers.count %> Agreements 
+    <%= link_to pluralize(micropost.agreed_microposts.count+micropost.agreers.count, "Agreement"), micropost_path(micropost), class: "btn btn-small btn-info" %> 
   </span>	
   <% if current_user?(micropost.user) %>
     <%= link_to "delete", micropost, method: :delete,
@@ -13,6 +13,8 @@
                                      title: micropost.content %>
   <% end %>
   <br>
+  <br>
+  <hr>
   <div class="row">
     <div class="span4">
       <% if micropost.agreers.any? %>

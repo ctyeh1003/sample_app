@@ -5,8 +5,8 @@ class MicropostsController < ApplicationController
   def show
     @user = current_user
     @micropost = Micropost.find(params[:id]) 
-    @agreed_feed_items = @micropost.agreed_microposts.paginate(page: params[:page])
-    @agreer_feed_items = @micropost.agreers.paginate(page: params[:page])
+    @agreed_feed_items = @micropost.agreed_microposts.paginate(page: params[:page], per_page: 10)
+    @agreer_feed_items = @micropost.agreers.paginate(page: params[:page], per_page: 10)
     @new_micropost = current_user.microposts.build
     @new_micropost.agreements.build
   end
