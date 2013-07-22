@@ -8,13 +8,14 @@ SampleApp::Application.routes.draw do
 
   resources :microposts do
     member do
-      get :agreeing, :agreers
+      get :agreeing, :agreers, :disagreeing, :disagreers
     end
   end
 
   resources :sessions, only:[:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :agreements, only: [:create, :destroy]
+  resources :disagreements, only: [:create, :destroy]
 
   root to: 'static_pages#home'
 

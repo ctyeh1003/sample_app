@@ -1,0 +1,6 @@
+<% if @disagreed_feed_items.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/feed_item', collection: @disagreed_feed_items %>
+  </ol>
+  <%= will_paginate @disagreed_feed_items, page_links: false %>
+<% end %>

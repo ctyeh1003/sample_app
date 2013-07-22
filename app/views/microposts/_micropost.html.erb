@@ -4,9 +4,15 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
+  
+  <span class="opinion_stats">
+    <%= link_to pluralize(micropost.disagreed_microposts.count+micropost.disagreers.count, "Disagreement"), micropost_path(micropost), class: "btn btn-small btn-warning" %> 
+  </span> 
+
   <span class="opinion_stats">
     <%= link_to pluralize(micropost.agreed_microposts.count+micropost.agreers.count, "Agreement"), micropost_path(micropost), class: "btn btn-small btn-info" %> 
   </span>	
+  
   <% if current_user?(micropost.user) %>
     <%= link_to "delete", micropost, method: :delete,
                                      data: { confirm: "You sure?" },
@@ -15,19 +21,49 @@
   <br>
   <br>
   <hr>
+  <section>
   <div class="row">
     <div class="span4">
       <% if micropost.agreers.any? %>
        <h4>Microposts that Agree:</h4>
         <%= micropost.agreers.count %> Posts 
         <%= render 'agreer_feed' %>
+      <% else %>
+        <h4>No microposts agree yet.</h4>
       <% end %>
     </div>
     <div class="span4">
       <% if micropost.agreed_microposts.any? %>
   	   <h4>Agrees With:</h4>
         <%= micropost.agreed_microposts.count %> Posts
-        <%= render 'agreed_feed' %> 
+        <%= render 'agreed_feed' %>
+      <% else %>
+        <h4>Does not agree with any micropost.</h4>
       <% end %>
     </div>
+  </section>
+  <section>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+    <div class="span4">
+      <% if micropost.disagreers.any? %>
+       <h4>Microposts that Disagree:</h4>
+        <%= micropost.disagreers.count %> Posts 
+        <%= render 'disagreer_feed' %>
+      <% else %>
+        <h4>No microposts disagree yet.</h4>
+      <% end %>
+    </div>
+    <div class="span4">
+      <% if micropost.disagreed_microposts.any? %>
+       <h4>Disagrees With:</h4>
+        <%= micropost.disagreed_microposts.count %> Posts
+        <%= render 'disagreed_feed' %> 
+      <% else %>
+        <h4>Does not disagree with any micropost.</h4>
+      <% end %>
+    </div>
+  </section>
 </li>

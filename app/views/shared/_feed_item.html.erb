@@ -9,9 +9,15 @@
   </a>
   </span>
   <br>
+
+  <span class="opinion_stats">
+    <%= link_to pluralize(feed_item.disagreed_microposts.count+feed_item.disagreers.count, "Disagreement"), micropost_path(feed_item), class: "btn btn-small btn-warning" %>
+  </span>
+
   <span class="opinion_stats">
     <%= link_to pluralize(feed_item.agreed_microposts.count+feed_item.agreers.count, "Agreement"), micropost_path(feed_item), class: "btn btn-small btn-info" %>
   </span>
+
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>

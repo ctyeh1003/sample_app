@@ -1,0 +1,2 @@
+$("#disagree_form").html("<%= escape_javascript(render('microposts/disagree')) %>")
+$("#disagreers").html('<%= @micropost.disagreers.count %>')

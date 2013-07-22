@@ -5,6 +5,7 @@ namespace :db do
     make_microposts
     make_relationships
     make_agreements
+    make_disagreements
   end
 end
 
@@ -49,4 +50,13 @@ def make_agreements
   agreers      = microposts[3..40]
   agreed_microposts.each { |agreed| micropost.agree!(agreed) }
   agreers.each      { |agreer| agreer.agree!(micropost) }
+end
+
+def make_disagreements
+  microposts = Micropost.all
+  micropost  = microposts.first
+  disagreed_microposts = microposts[2..50]
+  disagreers      = microposts[3..40]
+  disagreed_microposts.each { |disagreed| micropost.disagree!(disagreed) }
+  disagreers.each      { |disagreer| disagreer.disagree!(micropost) }
 end

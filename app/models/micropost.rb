@@ -1,17 +1,23 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :agreements_attributes
+  attr_accessible :content, :agreements_attributes, :disagreements_attributes
   
   belongs_to :user
   
   has_many :agreements, foreign_key: "agreer_id", dependent: :destroy
-
-  accepts_nested_attributes_for :agreements
-
   has_many :agreed_microposts, through: :agreements, source: :agreed
   has_many :reverse_agreements, foreign_key: "agreed_id",
                                    class_name:  "Agreement",
                                    dependent:   :destroy
   has_many :agreers, through: :reverse_agreements, source: :agreer
+
+  has_many :disagreements, foreign_key: "disagreer_id", dependent: :destroy
+  has_many :disagreed_microposts, through: :disagreements, source: :disagreed
+  has_many :reverse_disagreements, foreign_key: "disagreed_id",
+                                   class_name:  "Disagreement",
+                                   dependent:   :destroy
+  has_many :disagreers, through: :reverse_disagreements, source: :disagreer
+
+  accepts_nested_attributes_for :agreements, :disagreements
 
   validates :user_id, presence: true
   validates :content, presence: true, length: {maximum: 14000}
@@ -32,6 +38,18 @@ class Micropost < ActiveRecord::Base
 
   def unagree!(other_micropost)
   	agreements.find_by_agreed_id(other_micropost.id).destroy
+  end
+
+  def disagreeing?(other_micropost)
+    disagreements.find_by_disagreed_id(other_micropost.id)
+  end
+
+  def disagree!(other_micropost)
+    disagreements.create!(disagreed_id: other_micropost.id)
+  end
+
+  def undisagree!(other_micropost)
+    disagreements.find_by_disagreed_id(other_micropost.id).destroy
   end
 
   def self.from_users_followed_by(user)

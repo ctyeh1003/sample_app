@@ -1,0 +1,17 @@
+<% @micropost ||= current_micropost %>
+<div class="stats">
+  <a href="<%= disagreeing_micropost_path(@micropost) %>">
+    Disagrees with
+    <strong id="Disagreeing" class="stat">
+      <%= @micropost.disagreed_microposts.count %>
+    </strong>
+    microposts 
+  </a>
+
+  <a href="<%= disagreers_micropost_path(@micropost) %>">
+    <strong id="Disagreers" class="stat">
+      <%= @micropost.disagreers.count %>
+    </strong>
+    microposts disagree
+  </a>
+</div>

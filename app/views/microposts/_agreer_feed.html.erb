@@ -2,5 +2,5 @@
   <ol class="microposts">
     <%= render partial: 'shared/feed_item', collection: @agreer_feed_items %>
   </ol>
-  <%= will_paginate @agreer_feed_items, page_links: false, per_page: 3%>
+  <%= will_paginate @agreer_feed_items, page_links: false%>
 <% end %>

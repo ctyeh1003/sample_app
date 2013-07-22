@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516173614) do
+ActiveRecord::Schema.define(:version => 20130719010836) do
 
   create_table "agreements", :force => true do |t|
     t.integer  "agreer_id"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(:version => 20130516173614) do
   add_index "agrees", ["agreed_id"], :name => "index_agrees_on_agreed_id"
   add_index "agrees", ["agreer_id", "agreed_id"], :name => "index_agrees_on_agreer_id_and_agreed_id", :unique => true
   add_index "agrees", ["agreer_id"], :name => "index_agrees_on_agreer_id"
+
+  create_table "disagreements", :force => true do |t|
+    t.integer  "disagreer_id"
+    t.integer  "disagreed_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "disagreements", ["disagreed_id"], :name => "index_disagreements_on_disagreed_id"
+  add_index "disagreements", ["disagreer_id", "disagreed_id"], :name => "index_disagreements_on_disagreer_id_and_disagreed_id", :unique => true
+  add_index "disagreements", ["disagreer_id"], :name => "index_disagreements_on_disagreer_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

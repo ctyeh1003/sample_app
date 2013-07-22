@@ -1,0 +1,19 @@
+<div id="disagree_form">
+  <%= form_for(@new_micropost) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.text_area :content, placeholder: "Disagree..." %>
+      </div>
+
+  	<%= f.fields_for :disagreements do |builder| %>
+  	  <div class="field">
+  	  	<%= builder.hidden_field :disagreed_id, :value => @micropost.id %>
+  	  	<%= builder.hidden_field :disagreer_id, :value => @new_micropost.id %>
+  	  	<%= builder.hidden_field :nested %>	
+  	  </div>	
+	  <% end %>    
+	
+	<%= f.submit "Disagree", class: "btn btn-large btn-warning" %>
+  
+  <% end %>    
+</div>
