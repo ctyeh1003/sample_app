@@ -5,7 +5,7 @@
   </span>
   <span class="content">
     <a href="<%= micropost_path(feed_item) %>">
-    <%=feed_item.content %>
+    <%=simple_format(feed_item.content) %>
   </a>
   </span>
   <br>
