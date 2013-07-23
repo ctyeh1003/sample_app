@@ -20,7 +20,7 @@ class Micropost < ActiveRecord::Base
   accepts_nested_attributes_for :agreements, :disagreements
 
   validates :user_id, presence: true
-  validates :content, presence: true, length: {maximum: 14000}
+  validates :content, presence: true, length: {maximum: 1000000}
 
   default_scope order: 'microposts.created_at DESC'
 
