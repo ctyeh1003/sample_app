@@ -16,12 +16,26 @@
 
     </aside>
     <div class="span8">
-      <h3>Micropost Feed</h3>
+      <h3>Latest Opinions</h3>
       <%= render 'shared/feed' %>
     </div>
   </div>  
 
 <% else %>
+ <div class="row">
+    <aside class="span4">
+      <%= link_to "Sign up now!", signup_path, 
+                                class: "btn btn-large btn-primary" %>
+    </aside>
+    <div class="span8">
+      <h3>Latest Opinions</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div> 
+<% end %>
+
+
+<!--
   <div class="center hero-unit">
     <h1>Welcome to <br> "Agree or Disagree"</h1>
 
@@ -34,5 +48,5 @@
   </div>
 
   <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
-
-<% end %> 
+-->
+ 

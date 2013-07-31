@@ -9,6 +9,7 @@
   <div class="span4">
   	<aside class="span4">
       
+    <% if signed_in? %>
       <section>
         <h1>
         <%= gravatar_for @user %>
@@ -21,7 +22,12 @@
       <section>
         <%= render 'disagree_form'%>
       </section>
-
+    <% else %>
+      <aside class="span4">
+        <%= link_to "Sign up now!", signup_path, 
+                                class: "btn btn-large btn-primary" %>
+    </aside>
+    <% end %>
     </aside>
   </div>
 </div>

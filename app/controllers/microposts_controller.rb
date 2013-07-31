@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_filter :signed_in_user
+  #before_filter :signed_in_user
   before_filter :correct_user,   only: :destroy
 
   def show
@@ -9,9 +9,11 @@ class MicropostsController < ApplicationController
     @agreer_feed_items = @micropost.agreers.paginate(page: params[:page], per_page: 3)
     @disagreed_feed_items = @micropost.disagreed_microposts.paginate(page: params[:page], per_page: 3)
     @disagreer_feed_items = @micropost.disagreers.paginate(page: params[:page], per_page: 3)
-    @new_micropost = current_user.microposts.build
-    @new_micropost.agreements.build
-    @new_micropost.disagreements.build
+    if signed_in?
+      @new_micropost = current_user.microposts.build
+      @new_micropost.agreements.build
+      @new_micropost.disagreements.build
+    end
   end
 
   def new
