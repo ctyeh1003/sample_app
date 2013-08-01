@@ -22,6 +22,11 @@ SampleApp::Application.routes.draw do
   match '/help', to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  match '/politics', to: 'static_pages#politics'
+  match '/business', to: 'static_pages#business'
+  match '/lifestyle', to: 'static_pages#lifestyle'
+
   match '/signup', to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
