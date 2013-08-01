@@ -3,7 +3,7 @@
     <%= render 'shared/error_messages', object: f.object %>
       <div class="field">
         <%= f.text_field :title, placeholder: "Title..." %>
-        <%= f.text_area :content, placeholder: "Disagree..." %>
+        <%= f.text_area :content, placeholder: "To disagree, submit your opinion here." %>
         <%= f.hidden_field :category, :value => @micropost.category %>
       </div>
 

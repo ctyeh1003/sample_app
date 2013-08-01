@@ -1,4 +1,3 @@
-
   <%= link_to gravatar_for(feed_item.user), feed_item.user %>
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %>
@@ -16,7 +15,23 @@
     <%=simple_format(feed_item.content) %>
   </a>
   </span>
-  <span class="category">Category: <%= feed_item.category %></span>
+  <span class="category">Category: 
+    <% if feed_item.category=="Politics" %> 
+      <%= link_to feed_item.category, politics_path %>
+    <% end %>
+    <% if feed_item.category=="Law" %> 
+      <%= link_to feed_item.category, law_path %>
+    <% end %>
+    <% if feed_item.category=="Business" %> 
+      <%= link_to feed_item.category, business_path %>
+    <% end %>
+    <% if feed_item.category=="Lifestyle" %> 
+      <%= link_to feed_item.category, lifestyle_path %>
+    <% end %>
+    <% if feed_item.category=="Faith" %> 
+      <%= link_to feed_item.category, faith_path %>
+    <% end %>
+  </span>
   <br>
   <br>
   <span class="opinion_stats">
@@ -35,6 +50,8 @@
                                      data: { confirm: "Are you sure you want to delete this post?" },
                                      title: "Delete This Post" %>
   <% end %>
+    <br>
+  <hr>
 
 <!--<li id="<%= feed_item.id %>">
 </li>-->

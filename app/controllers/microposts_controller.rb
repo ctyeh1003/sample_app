@@ -23,8 +23,8 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+      flash[:success] = "Opinion created!"
+      redirect_to :back
     else
       @feed_items = []
       render 'static_pages/home'

@@ -10,7 +10,22 @@
   <br>
   <span class="content"><%= simple_format(micropost.content) %></span>
   <br>
-  <span class="category"><h3>Category: <%= micropost.category %></h3></span>
+  <span class="category"><h3>Category:    
+    <% if micropost.category=="Politics" %> 
+      <%= link_to micropost.category, politics_path %>
+    <% end %>
+    <% if micropost.category=="Law" %> 
+      <%= link_to micropost.category, law_path %>
+    <% end %>
+    <% if micropost.category=="Business" %> 
+      <%= link_to micropost.category, business_path %>
+    <% end %>
+    <% if micropost.category=="Lifestyle" %> 
+      <%= link_to micropost.category, lifestyle_path %>
+    <% end %>
+    <% if micropost.category=="Faith" %> 
+      <%= link_to micropost.category, faith_path %>
+    <% end %></h3></span>
   <br>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.

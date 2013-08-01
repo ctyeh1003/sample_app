@@ -15,37 +15,41 @@
       </section>
 
     </aside>
+
+<% else %>
+  <div class="row">
+    <aside class="span4">
+      <%= link_to "Sign up now!", signup_path, 
+                                class: "btn btn-large btn-primary" %>
+    </aside>
+  <% end %>
+
+  
     <div class="span8">
-      <h2>Latest Opinions</h2>
+    <h2>Latest Opinions</h2>
       <ul class="nav nav-tabs">
-        <li>
+        <li >
           <%= link_to "All", root_path %>
         </li>
         <li >
           <%= link_to "Politics", politics_path %>
         </li>
-        <li >
+        <li>
+          <%= link_to "Law", law_path %>
+        </li>
+        <li>
           <%= link_to "Business", business_path %>
         </li>
         <li class="active">
           <%= link_to "Lifestyle", lifestyle_path %>
         </li>
+        <li>
+          <%= link_to "Faith", faith_path %>
+        </li>
       </ul>
-    </div>
-  </div>  
-
-<% else %>
- <div class="row">
-    <aside class="span4">
-      <%= link_to "Sign up now!", signup_path, 
-                                class: "btn btn-large btn-primary" %>
-    </aside>
-    <div class="span8">
-      <h3>Latest Opinions</h3>
       <%= render 'shared/feed' %>
     </div>
-  </div> 
-<% end %>
+  </div>  
 
 
 <!--

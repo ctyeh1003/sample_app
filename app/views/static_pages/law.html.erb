@@ -15,7 +15,8 @@
       </section>
 
     </aside>
-  <% else %>
+
+<% else %>
   <div class="row">
     <aside class="span4">
       <%= link_to "Sign up now!", signup_path, 
@@ -27,13 +28,13 @@
   <div class="span8">
     <h2>Latest Opinions</h2>
       <ul class="nav nav-tabs">
-        <li class="active">
+        <li >
           <%= link_to "All", root_path %>
         </li>
         <li>
           <%= link_to "Politics", politics_path %>
         </li>
-        <li>
+        <li class="active">
           <%= link_to "Law", law_path %>
         </li>
         <li>
@@ -50,9 +51,6 @@
     </div>
   </div>  
 
-
-
-  
 
 <!--
   <div class="center hero-unit">

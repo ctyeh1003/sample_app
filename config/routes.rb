@@ -24,8 +24,10 @@ SampleApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
   match '/politics', to: 'static_pages#politics'
+  match '/law', to: 'static_pages#law'
   match '/business', to: 'static_pages#business'
   match '/lifestyle', to: 'static_pages#lifestyle'
+  match '/faith', to: 'static_pages#faith'
 
   match '/signup', to: 'users#new'
   match '/signin',  to: 'sessions#new'

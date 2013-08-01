@@ -2,8 +2,8 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :title, placeholder: "Title..." %>
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
-    <%= f.select :category, options_for_select([["Politics", "Politics"], ["Business", "Business"], ["Lifestyle", "Lifestyle"]]) %>
+    <%= f.text_area :content, placeholder: "Compose new opinion..." %>
+    <%= f.select :category, options_for_select([["Politics", "Politics"], ["Law", "Law"], ["Business", "Business"], ["Lifestyle", "Lifestyle"], ["Faith", "Faith"]]) %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
