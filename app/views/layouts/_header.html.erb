@@ -1,9 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
  <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Agree or Disagree", root_path, id: "logo" %>
+      <%= link_to "The Conversensus", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          <!--<li>
+            <form class="navbar-search pull-left">
+              <input type="text" class="search-query" placeholder="Search">
+            </form>
+          </li>-->
           <li><%= link_to "Home",    root_path %></li>
           <li><%= link_to "Help",    help_path %></li>
           <% if signed_in? %>
