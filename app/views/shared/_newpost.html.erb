@@ -1,25 +1,25 @@
-<% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
+
+      <% if signed_in? %>
+        <section>
+          <%= render 'shared/user_info' %>
+        </section>
       
-      <section>
-        <%= render 'shared/stats' %>
-      </section>
+        <section>
+          <%= render 'shared/stats' %>
+        </section>
 
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-
-    </aside>
-  <% else %>
-  <div class="row">
-    <aside class="span4">
-      <%= link_to "Sign up now!", signup_path, 
+        <section>
+          <%= render 'shared/micropost_form' %>
+        </section>
+      <% else %>
+        <%= link_to "Sign up now!", signup_path, 
                                 class: "btn btn-large btn-primary" %>
-    </aside>
-  <% end %>
+      <% end %>
+
+
+      To start posting your opinions and agree or disagree with others, check out the Help page (link at top-right side of the main page)! 
+
+
+
 
  
