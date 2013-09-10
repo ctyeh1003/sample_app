@@ -7,11 +7,13 @@
   <br>
   <span class="title">
     <a href="<%= micropost_path(feed_item) %>">
-    <h3><%=simple_format(feed_item.title) %></h3>
+    <h3><%= simple_format(feed_item.title) %></h3>
   </a>
   </span>
   <span class="content">
-    <%=simple_format(feed_item.content) %>
+    <a href="<%= micropost_path(feed_item) %>">
+    <%= simple_format(truncate(feed_item.content, length: 300, separator: ' ', omission: '...(click to read more)') {link_to "Continue", micropost_path(feed_item) }) %>
+    </a>
   </span>
   <span class="category">Category: 
     <% if feed_item.category=="Politics" %> 
