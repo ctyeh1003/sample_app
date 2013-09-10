@@ -11,9 +11,7 @@
   </a>
   </span>
   <span class="content">
-    <a href="<%= micropost_path(feed_item) %>">
     <%=simple_format(feed_item.content) %>
-  </a>
   </span>
   <span class="category">Category: 
     <% if feed_item.category=="Politics" %> 
