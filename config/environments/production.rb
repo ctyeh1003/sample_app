@@ -62,8 +62,8 @@ SampleApp::Application.configure do
   config.active_support.deprecation = :notify
 
   # Force all access to the app over SSL, use Strict-Transport-Security, 
-  # and use secure cookies.
-  config.force_ssl = true
+  # and use secure cookies. (changed from default(true) to false)
+  config.force_ssl = false
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
